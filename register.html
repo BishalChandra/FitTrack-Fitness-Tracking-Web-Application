@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Register | FitTrack</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+<div class="login-container">
+
+  <!-- Logo -->
+  <div class="logo">🏆 Fit<span>Track</span></div>
+  <p class="tagline">Start your fitness journey today 🚀</p>
+
+  <!-- Register Form -->
+  <form onsubmit="register(event)">
+
+    <label for="name">Full Name</label>
+    <input type="text" id="name" placeholder="Your Name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="youremail@gmail.com" required>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="••••••••" required>
+
+    <button type="submit" class="btn-submit">Create Account →</button>
+
+  </form>
+
+  <p id="formMsg" class="form-msg"></p>
+
+  <div class="divider">or</div>
+
+  <p class="register">
+    Already have an account? <a href="login.html">Login</a>
+  </p>
+
+</div>
+
+<script>
+function register(e) {
+  e.preventDefault();
+  const msg = document.getElementById('formMsg');
+
+  const user = {
+    name:     document.getElementById('name').value.trim(),
+    email:    document.getElementById('email').value.trim(),
+    password: document.getElementById('password').value
+  };
+
+  if (user.password.length < 6) {
+    msg.className = 'form-msg error';
+    msg.textContent = '❌ Password must be at least 6 characters.';
+    return;
+  }
+
+  localStorage.setItem('fittrack_user_data', JSON.stringify(user));
+  localStorage.setItem('fittrack_user', 'true');
+
+  msg.className = 'form-msg success';
+  msg.textContent = '✅ Account created! Redirecting…';
+  setTimeout(() => { window.location.href = 'dashboard.html'; }, 900);
+}
+</script>
+
+</body>
+</html>

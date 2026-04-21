@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Workout & Fitness Videos | FitTrack</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/videos.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">🏋️ <strong>FitTrack</strong></div>
+  <nav class="nav-links">
+    <a class="pill" href="dashboard.html">Home</a>
+    <a class="pill active" href="videos.html">Videos</a>
+    <a class="pill" href="gallery.html">Gallery</a>
+    <a class="pill" href="support.html">Support</a>
+    <a class="pill" href="profile.html">Profile</a>
+    <a class="pill" href="logout.html">Logout</a>
+  </nav>
+</header>
+
+<!-- TITLE -->
+<section class="title">
+  <h1>🎥 Workout & Fitness Videos</h1>
+  <p>Follow guided workouts to stay fit and motivated</p>
+</section>
+
+<!-- FILTER TABS -->
+<div class="filter-tabs">
+  <button class="tab active" onclick="filterVideos('all', this)">All</button>
+  <button class="tab" onclick="filterVideos('beginner', this)">🟢 Beginner</button>
+  <button class="tab" onclick="filterVideos('cardio', this)">🔥 Cardio</button>
+  <button class="tab" onclick="filterVideos('hiit', this)">⚡ HIIT</button>
+  <button class="tab" onclick="filterVideos('strength', this)">💪 Strength</button>
+  <button class="tab" onclick="filterVideos('yoga', this)">🧘 Yoga</button>
+  <button class="tab" onclick="filterVideos('abs', this)">🎯 Abs</button>
+</div>
+
+<!-- VIDEO GRID -->
+<section class="video-grid">
+
+  <div class="video-card" data-category="beginner">
+    <div class="badge">🟢 Beginner</div>
+    <iframe src="https://www.youtube.com/embed/ml6cT4AZdqI" allowfullscreen></iframe>
+    <div class="card-body">
+      <h3>Full Body Workout</h3>
+      <p>Beginner friendly full body routine to get you started</p>
+      <div class="meta"><span>⏱ 30 mins</span><span>🔥 250 cal</span></div>
+    </div>
+  </div>
+
+  <div class="video-card" data-category="cardio">
+    <div class="badge cardio">🔥 Cardio</div>
+    <iframe src="https://www.youtube.com/embed/UBMk30rjy0o" allowfullscreen></iframe>
+    <div class="card-body">
+      <h3>Cardio Burn</h3>
+      <p>High calorie burn cardio session for maximum fat loss</p>
+      <div class="meta"><span>⏱ 45 mins</span><span>🔥 400 cal</span></div>
+    </div>
+  </div>
+
+  <div class="video-card" data-category="yoga">
+    <div class="badge yoga">🧘 Yoga</div>
+    <iframe src="https://www.youtube.com/embed/v7AYKMP6rOE" allowfullscreen></iframe>
+    <div class="card-body">
+      <h3>Yoga & Stretching</h3>
+      <p>Improve flexibility, posture and recovery</p>
+      <div class="meta"><span>⏱ 25 mins</span><span>🔥 120 cal</span></div>
+    </div>
+  </div>
+
+  <div class="video-card" data-category="hiit">
+    <div class="badge hiit">⚡ HIIT</div>
+    <iframe src="https://www.youtube.com/embed/sTANio_2E0Q" allowfullscreen></iframe>
+    <div class="card-body">
+      <h3>HIIT Workout</h3>
+      <p>Intense HIIT session for serious fat burn</p>
+      <div class="meta"><span>⏱ 20 mins</span><span>🔥 350 cal</span></div>
+    </div>
+  </div>
+
+  <div class="video-card" data-category="beginner">
+    <div class="badge">🟢 Beginner</div>
+    <iframe src="https://www.youtube.com/embed/2pLT-olgUJs" allowfullscreen></iframe>
+    <div class="card-body">
+      <h3>Beginner Full Body</h3>
+      <p>20 min beginner workout — no equipment needed</p>
+      <div class="meta"><span>⏱ 20 mins</span><span>🔥 180 cal</span></div>
+    </div>
+  </div>
+
+  <div class="video-card" data-category="abs">
+    <div class="badge abs">🎯 Abs</div>
+    <iframe src="https://www.youtube.com/embed/1919eTCoESo" allowfullscreen></iframe>
+    <div class="card-body">
+      <h3>Abs Workout</h3>
+      <p>Core focused workout to build strong abs</p>
+      <div class="meta"><span>⏱ 15 mins</span><span>🔥 150 cal</span></div>
+    </div>
+  </div>
+
+  <div class="video-card" data-category="strength">
+    <div class="badge strength">💪 Strength</div>
+    <iframe src="https://www.youtube.com/embed/U9kTnTMnMTU" allowfullscreen></iframe>
+    <div class="card-body">
+      <h3>Strength Training</h3>
+      <p>Build muscle with this full body strength session</p>
+      <div class="meta"><span>⏱ 40 mins</span><span>🔥 300 cal</span></div>
+    </div>
+  </div>
+
+  <div class="video-card" data-category="hiit">
+    <div class="badge hiit">⚡ HIIT</div>
+    <iframe src="https://www.youtube.com/embed/TkaYafQ-XC4" allowfullscreen></iframe>
+    <div class="card-body">
+      <h3>10 Min HIIT Blast</h3>
+      <p>Quick but brutal — max effort in minimum time</p>
+      <div class="meta"><span>⏱ 10 mins</span><span>🔥 200 cal</span></div>
+    </div>
+  </div>
+
+  <div class="video-card" data-category="cardio">
+    <div class="badge cardio">🔥 Cardio</div>
+    <iframe src="https://www.youtube.com/embed/VHyGqsPOUHs" allowfullscreen></iframe>
+    <div class="card-body">
+      <h3>Dance Cardio</h3>
+      <p>Fun dance workout — burn calories without the boredom</p>
+      <div class="meta"><span>⏱ 30 mins</span><span>🔥 280 cal</span></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- NO RESULTS MESSAGE -->
+<div id="noResults" style="display:none;" class="no-results">
+  😕 No videos found in this category.
+</div>
+
+<script>
+function filterVideos(category, btn) {
+  // Update active tab
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+  btn.classList.add("active");
+
+  const cards = document.querySelectorAll(".video-card");
+  let visible = 0;
+
+  cards.forEach(card => {
+    if (category === "all" || card.dataset.category === category) {
+      card.style.display = "block";
+      visible++;
+    } else {
+      card.style.display = "none";
+    }
+  });
+
+  document.getElementById("noResults").style.display = visible === 0 ? "block" : "none";
+}
+</script>
+
+</body>
+</html>

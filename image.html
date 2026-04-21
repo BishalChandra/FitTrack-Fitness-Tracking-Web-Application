@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Formats Demo</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+             
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>📷 Image Formats</h1>
+
+<div class="container">
+
+    <!-- JPEG -->
+    <div class="card">
+        <h3>JPEG Image</h3>
+        <img src="images\mouse.jpg" alt="JPEG Image">
+    </div>
+
+    <!-- PNG -->
+    <div class="card">
+        <h3>PNG Image</h3>
+        <img src="images/parrot.png" alt="PNG Image">
+    </div>
+
+    <!-- WEBP -->
+    <div class="card">
+        <h3>WEBP Image</h3>
+        <img src="images/sample.webp" alt="WEBP Image">
+    </div>
+
+    <!-- AVIF -->
+    <div class="card">
+        <h3>AVIF Image</h3>
+        <img src="images/bb.avif" alt="AVIF Image">
+    </div>
+
+    <!-- GIF -->
+    <div class="card">
+        <h3>GIF Image</h3>
+        <img src="images/aa.gif" alt="GIF Image">
+    </div>
+
+    <!-- SVG -->
+    <div class="card">
+        <h3>SVG Image</h3>
+        <img src="images/file.svg" alt="SVG Image">
+    </div>
+
+</div>
+
+</body>
+</html>

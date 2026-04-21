@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Profile | FitTrack</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">🏆 <strong>FitTrack</strong></div>
+  <nav class="nav-links">
+    <a class="pill" href="dashboard.html">Home</a>
+    <a class="pill" href="videos.html">Videos</a>
+    <a class="pill" href="gallery.html">Gallery</a>
+    <a class="pill" href="support.html">Support</a>
+    <a class="pill active" href="profile.html">Profile</a>
+    <a class="pill" href="index.html">Logout</a>
+  </nav>
+</header>
+
+<main class="layout">
+
+  <!-- LEFT COLUMN -->
+  <div class="col-left">
+
+    <!-- PROFILE IDENTITY CARD -->
+    <div class="card profile-main">
+      <div class="avatar-wrap">
+        <div class="avatar">👤</div>
+      </div>
+      <h2 id="dispName">Bishal Chandra</h2>
+      <p class="email" id="dispEmail">bishal@email.com</p>
+      <span class="badge">🏆 Active Member</span>
+
+      <div class="info-row">
+        <div class="info-cell">
+          <span>Age</span>
+          <strong id="dispAge">21</strong>
+        </div>
+        <div class="info-cell">
+          <span>Weight</span>
+          <strong id="dispWeight">68 <em>kg</em></strong>
+        </div>
+        <div class="info-cell">
+          <span>Height</span>
+          <strong id="dispHeight">170 <em>cm</em></strong>
+        </div>
+      </div>
+
+      <button class="teal-btn" onclick="toggleEdit()">✏️ Edit Profile</button>
+    </div>
+
+    <!-- GOAL + PROGRESS CARD -->
+    <div class="card goal-card">
+      <h3>🎯 Current Goal</h3>
+      <div class="goal-display" id="goalDisplay">💪 Build Muscle</div>
+      <p class="sub-note">Update your goal in Edit Profile.</p>
+
+      <h4 class="sub-head">Weekly Target</h4>
+      <div class="progress-wrap">
+        <div class="progress-bar">
+          <div class="progress-fill" id="goalProgress" style="width:0%"></div>
+        </div>
+        <span id="goalPct" class="pct-label">0%</span>
+      </div>
+      <p id="goalProgressText" class="sub-note">0 / 5 workouts completed this week</p>
+    </div>
+
+  </div><!-- /col-left -->
+
+  <!-- RIGHT COLUMN -->
+  <div class="col-right">
+
+    <!-- EDIT FORM CARD (hidden until toggled) -->
+    <div class="card edit-card" id="editCard">
+      <h3>✏️ Edit Profile</h3>
+
+      <label>Full Name</label>
+      <input id="inName" type="text" placeholder="Your name" value="Bishal Chandra">
+
+      <label>Email</label>
+      <input id="inEmail" type="email" placeholder="email@example.com" value="bishal@email.com">
+
+      <div class="row3">
+        <div>
+          <label>Age</label>
+          <input id="inAge" type="number" placeholder="21" value="21">
+        </div>
+        <div>
+          <label>Weight (kg)</label>
+          <input id="inWeight" type="number" placeholder="68" value="68">
+        </div>
+        <div>
+          <label>Height (cm)</label>
+          <input id="inHeight" type="number" placeholder="170" value="170">
+        </div>
+      </div>
+
+      <label>Fitness Goal</label>
+      <select id="inGoal">
+        <option>💪 Build Muscle</option>
+        <option>🔥 Lose Weight</option>
+        <option>🏃 Improve Endurance</option>
+        <option>🧘 Stay Active</option>
+      </select>
+
+      <button class="teal-btn" onclick="saveProfile()">💾 Save Changes</button>
+      <p id="saveMsg"></p>
+    </div>
+
+    <!-- QUICK STATS CARD -->
+    <div class="card stats-card">
+      <h3>📊 Quick Stats</h3>
+
+      <div class="stat-row">
+        <span>🏃 Total Workouts</span>
+        <strong id="totalWorkouts">0</strong>
+      </div>
+      <div class="stat-row">
+        <span>🔥 Calories Burned</span>
+        <strong id="totalCalories">0 kcal</strong>
+      </div>
+      <div class="stat-row">
+        <span>👟 Total Steps</span>
+        <strong id="totalSteps">0</strong>
+      </div>
+      <div class="stat-row">
+        <span>🌙 Avg Sleep</span>
+        <strong id="avgSleep">—</strong>
+      </div>
+
+      <a href="dashboard.html" class="teal-btn" style="display:block;text-align:center;text-decoration:none;margin-top:18px;">📈 Go to Dashboard</a>
+    </div>
+
+  </div><!-- /col-right -->
+
+</main>
+
+<script>
+  function toggleEdit() {
+    const card = document.getElementById('editCard');
+    card.classList.toggle('open');
+    // scroll into view smoothly on mobile
+    if (card.classList.contains('open')) {
+      setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+  }
+
+  function saveProfile() {
+    const name   = document.getElementById('inName').value;
+    const email  = document.getElementById('inEmail').value;
+    const age    = document.getElementById('inAge').value;
+    const weight = document.getElementById('inWeight').value;
+    const height = document.getElementById('inHeight').value;
+    const goal   = document.getElementById('inGoal').value;
+
+    document.getElementById('dispName').textContent  = name;
+    document.getElementById('dispEmail').textContent = email;
+    document.getElementById('dispAge').innerHTML     = age;
+    document.getElementById('dispWeight').innerHTML  = weight + ' <em>kg</em>';
+    document.getElementById('dispHeight').innerHTML  = height + ' <em>cm</em>';
+    document.getElementById('goalDisplay').textContent = goal;
+
+    const msg = document.getElementById('saveMsg');
+    msg.textContent = '✅ Profile updated successfully!';
+    setTimeout(() => { msg.textContent = ''; }, 3000);
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const workouts = JSON.parse(localStorage.getItem('workouts') || '[]');
+    document.getElementById('totalWorkouts').textContent = workouts.length || '0';
+    const cal = workouts.reduce((s, w) => s + (parseInt(w.calories) || 0), 0);
+    document.getElementById('totalCalories').textContent = (cal || 0) + ' kcal';
+
+    const steps = localStorage.getItem('steps');
+    document.getElementById('totalSteps').textContent = steps ? parseInt(steps).toLocaleString() : '0';
+
+    const logs = JSON.parse(localStorage.getItem('sleepLogs') || '[]');
+    if (logs.length) {
+      const avg = (logs.reduce((s, l) => s + parseFloat(l.hours), 0) / logs.length).toFixed(1);
+      document.getElementById('avgSleep').textContent = avg + ' hrs';
+    }
+
+    const weekly = workouts.filter(w => {
+      const diff = (new Date() - new Date(w.date)) / 86400000;
+      return diff <= 7;
+    }).length;
+    const pct = Math.min(Math.round((weekly / 5) * 100), 100);
+    document.getElementById('goalProgress').style.width = pct + '%';
+    document.getElementById('goalPct').textContent = pct + '%';
+    document.getElementById('goalProgressText').textContent =
+      `${weekly} / 5 workouts completed this week`;
+  });
+</script>
+</body>
+</html>

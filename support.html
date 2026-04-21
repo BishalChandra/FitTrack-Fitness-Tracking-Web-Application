@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Support | FitTrack</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/support.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">🏋️ <strong>FitTrack</strong></div>
+  <nav class="nav-links">
+    <a class="pill" href="dashboard.html">Home</a>
+    <a class="pill" href="videos.html">Videos</a>
+    <a class="pill" href="gallery.html">Gallery</a>
+    <a class="pill active" href="support.html">Support</a>
+    <a class="pill" href="profile.html">Profile</a>
+    <a class="pill" href="logout.html">Logout</a>
+  </nav>
+</header>
+
+<!-- PAGE TITLE -->
+<section class="title">
+  <h1>🆘 Support Center</h1>
+  <p>We're here to help you on your fitness journey</p>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="support-wrapper">
+
+  <!-- LEFT: FAQ -->
+  <div class="faq-section">
+    <h2>❓ Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        How do I log a workout? <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        Go to the Dashboard, fill in the Activity, Duration, and Calories fields, then click <strong>Add Workout</strong>. Your workout will appear in the list below instantly.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        How is my Weekly Progress calculated? <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        The progress bar tracks how many workouts you've logged this week against a goal of 5 workouts. Each workout you add moves the bar forward.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        Can I delete my workout data? <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        Yes! On the Dashboard, each workout row has a red <strong>✕</strong> button to delete it individually. You can also use <strong>🗑️ Clear All Workouts</strong> to remove everything at once.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        How do I enable reminders? <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        On the Dashboard, find the <strong>🔔 Reminders</strong> card. Click <strong>Enable Notifications</strong> and allow browser permissions. Then set your preferred reminder time and click Save.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        How do I export my data? <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        On the Dashboard, find the <strong>📥 Export Data</strong> card. You can download your workouts, steps, sleep, or all data at once as a CSV file that opens in Excel or Google Sheets.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        Where is my data stored? <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        All your data is stored locally in your browser's <strong>localStorage</strong>. It is never sent to any server — your data stays private on your device.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFAQ(this)">
+        Why are my charts empty on the Progress page? <span class="arrow">▼</span>
+      </button>
+      <div class="faq-a">
+        Charts only appear once you've logged data. Go to the Dashboard and add at least one workout, some steps, or sleep data — then revisit the Progress page.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: CONTACT FORM -->
+  <div class="support-card">
+    <h2>📬 Contact Us</h2>
+    <p>Can't find your answer? Send us a message below.</p>
+
+    <!-- Category -->
+    <label>Category</label>
+    <select id="category">
+      <option value="">-- Select a topic --</option>
+      <option value="bug">🐛 Bug Report</option>
+      <option value="feature">💡 Feature Request</option>
+      <option value="account">👤 Account Issue</option>
+      <option value="data">📊 Data / Export Issue</option>
+      <option value="other">❓ Other</option>
+    </select>
+
+    <label>Your Name</label>
+    <input type="text" id="supportName" placeholder="e.g. Bishal">
+
+    <label>Email Address</label>
+    <input type="email" id="supportEmail" placeholder="your@email.com">
+
+    <label>Subject</label>
+    <input type="text" id="supportSubject" placeholder="Brief description of your issue">
+
+    <label>Message</label>
+    <textarea id="supportMessage" placeholder="Describe your issue in detail..."></textarea>
+
+    <button class="submit-btn" onclick="submitSupport()">📨 Send Message</button>
+
+    <!-- Success message -->
+    <div id="successMsg" class="success-msg" style="display:none;">
+      ✅ Message sent! We'll get back to you within 24 hours.
+    </div>
+  </div>
+
+</div>
+
+<!-- QUICK CONTACT CARDS -->
+<div class="contact-cards">
+  <div class="contact-card">
+    <div class="contact-icon">📧</div>
+    <h4>Email Us</h4>
+    <p>support@fittrack.com</p>
+  </div>
+  <div class="contact-card">
+    <div class="contact-icon">💬</div>
+    <h4>Live Chat</h4>
+    <p>Available 9am – 6pm</p>
+  </div>
+  <div class="contact-card">
+    <div class="contact-icon">📖</div>
+    <h4>Docs</h4>
+    <p>fittrack.com/docs</p>
+  </div>
+</div>
+
+<script>
+// ── FAQ TOGGLE ──────────────────────────────────
+function toggleFAQ(btn) {
+  const answer = btn.nextElementSibling;
+  const arrow  = btn.querySelector(".arrow");
+  const isOpen = answer.classList.contains("open");
+
+  // Close all others
+  document.querySelectorAll(".faq-a").forEach(a => a.classList.remove("open"));
+  document.querySelectorAll(".faq-q").forEach(b => b.classList.remove("active"));
+  document.querySelectorAll(".arrow").forEach(a => a.textContent = "▼");
+
+  if (!isOpen) {
+    answer.classList.add("open");
+    btn.classList.add("active");
+    arrow.textContent = "▲";
+  }
+}
+
+// ── FORM SUBMIT ─────────────────────────────────
+function submitSupport() {
+  const name     = document.getElementById("supportName").value.trim();
+  const email    = document.getElementById("supportEmail").value.trim();
+  const subject  = document.getElementById("supportSubject").value.trim();
+  const message  = document.getElementById("supportMessage").value.trim();
+  const category = document.getElementById("category").value;
+
+  if (!name || !email || !subject || !message || !category) {
+    alert("⚠️ Please fill in all fields before sending.");
+    return;
+  }
+
+  // Basic email check
+  if (!email.includes("@") || !email.includes(".")) {
+    alert("⚠️ Please enter a valid email address.");
+    return;
+  }
+
+  // Show success
+  document.getElementById("successMsg").style.display = "block";
+
+  // Clear form
+  document.getElementById("supportName").value    = "";
+  document.getElementById("supportEmail").value   = "";
+  document.getElementById("supportSubject").value = "";
+  document.getElementById("supportMessage").value = "";
+  document.getElementById("category").value       = "";
+
+  // Hide after 5 sec
+  setTimeout(() => {
+    document.getElementById("successMsg").style.display = "none";
+  }, 5000);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FitTrack Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">🏋️ <strong>FitTrack Dashboard</strong></div>
+  <nav class="nav-links">
+    <a class="pill active" href="dashboard.html">Home</a>
+    <a class="pill" href="videos.html">Videos</a>
+    <a class="pill" href="gallery.html">Gallery</a>
+    <a class="pill" href="support.html">Support</a>
+    <a class="pill" href="profile.html">Profile</a>
+    <a class="pill" href="logout.html">Logout</a>
+  </nav>
+</header>
+
+<!-- MAIN GRID -->
+<main class="grid">
+
+  <!-- WELCOME -->
+  <div class="card">
+    <h2>Welcome, Bishal 👋</h2>
+    <p>Track your fitness progress below.</p>
+    <em>"The only bad workout is the one that didn't happen."</em>
+
+    <h4>Weekly Goal Progress</h4>
+    <div class="progress-bar">
+      <div id="progressFill" class="progress-fill"></div>
+    </div>
+    <p id="progressText"></p>
+  </div>
+
+  <!-- PROGRESS INFO -->
+  <div class="card">
+    <a href="progress.html" class="green-btn">📊 View Progress Charts</a>
+    <ul>
+      <li>🏃 Workout trends</li>
+      <li>🔥 Calories burned</li>
+      <li>💪 Body stats</li>
+    </ul>
+  </div>
+
+  <!-- LOG WORKOUT -->
+  <div class="card">
+    <h3>Log Workout</h3>
+    <input id="activity" placeholder="Activity (e.g. Running)">
+    <input id="duration" type="number" placeholder="Duration (mins)">
+    <input id="calories" type="number" placeholder="Calories Burned">
+    <button class="black-btn" onclick="addWorkout()">Add Workout</button>
+
+    <div class="table-head">
+      <span>Date</span>
+      <span>Activity</span>
+      <span>Duration</span>
+      <span>Calories</span>
+      <span>Delete</span>
+    </div>
+    <div id="workoutList"></div>
+
+    <!-- Clear All Workouts -->
+    <button class="clear-btn" onclick="clearWorkouts()">🗑️ Clear All Workouts</button>
+  </div>
+
+  <!-- TRACK STEPS -->
+  <div class="card">
+    <h3>Track Steps</h3>
+    <input id="stepsInput" type="number" placeholder="Steps Today">
+    <button class="black-btn" onclick="saveSteps()">Add Steps</button>
+    <p id="stepsDisplay"></p>
+    <!-- Clear Steps -->
+    <button class="clear-btn" onclick="clearSteps()">🗑️ Clear Steps</button>
+  </div>
+
+  <!-- BODY STATS -->
+  <div class="card">
+    <h3>Body Stats</h3>
+    <input id="weight" type="number" placeholder="Weight (kg)">
+    <input id="bmi" type="number" placeholder="BMI">
+    <button class="black-btn" onclick="saveBodyStats()">Save</button>
+    <p id="bodyDisplay"></p>
+    <!-- Clear Body Stats -->
+    <button class="clear-btn" onclick="clearBodyStats()">🗑️ Clear Body Stats</button>
+  </div>
+
+  <!-- SLEEP TRACKER -->
+  <div class="card">
+    <h3>🌙 Sleep Tracker</h3>
+
+    <input id="sleepDate" type="date">
+    <input id="sleepHours" type="number" placeholder="Hours of Sleep (e.g. 7.5)" step="0.5" min="0" max="24">
+    <button class="black-btn" onclick="saveSleep()">Log Sleep</button>
+
+    <!-- Warning -->
+    <p id="sleepWarning" style="color:#ff6b6b; font-weight:bold; margin-top:8px;"></p>
+
+    <!-- Average -->
+    <p id="sleepAverage" style="margin-top:6px;"></p>
+
+    <!-- Sleep Log Table -->
+    <div class="sleep-table-head" style="margin-top:12px;">
+      <span>Date</span>
+      <span>Hours</span>
+      <span>Status</span>
+      <span>Delete</span>
+    </div>
+    <div id="sleepList"></div>
+
+    <button class="clear-btn" onclick="clearSleep()">🗑️ Clear Sleep Data</button>
+  </div>
+
+  <!-- NOTIFICATIONS / REMINDERS -->
+  <div class="card">
+    <h3>🔔 Reminders</h3>
+    <p style="font-size:13px; margin-bottom:10px;">Enable browser notifications to get daily fitness reminders.</p>
+
+    <button class="black-btn" onclick="requestNotificationPermission()">🔔 Enable Notifications</button>
+    <button class="black-btn" onclick="sendTestNotification()" style="margin-top:8px;">🧪 Test Notification</button>
+
+    <div id="notifStatus" style="margin-top:10px; font-size:13px;"></div>
+
+    <hr style="border-color:rgba(255,255,255,0.2); margin:14px 0;">
+
+    <h4 style="margin-bottom:8px;">⏰ Set Reminder Time</h4>
+    <input id="reminderTime" type="time" value="08:00">
+    <button class="black-btn" onclick="saveReminderTime()">Save Reminder Time</button>
+    <p id="reminderDisplay" style="font-size:13px; margin-top:8px;"></p>
+  </div>
+
+  <!-- EXPORT DATA -->
+  <div class="card">
+    <h3>📥 Export Data</h3>
+    <p style="font-size:13px; margin-bottom:10px;">Download your fitness data as a CSV file to open in Excel or Google Sheets.</p>
+
+    <button class="black-btn" onclick="exportWorkoutsCSV()">💪 Export Workouts</button>
+    <button class="black-btn" onclick="exportStepsCSV()" style="margin-top:8px;">👟 Export Steps</button>
+    <button class="black-btn" onclick="exportSleepCSV()" style="margin-top:8px;">🌙 Export Sleep Data</button>
+    <button class="black-btn" onclick="exportAllCSV()" style="margin-top:8px; background: linear-gradient(45deg,#a855f7,#6366f1);">📦 Export All Data</button>
+
+    <p id="exportStatus" style="font-size:13px; margin-top:10px; color:#00e6a8;"></p>
+  </div>
+
+  <!-- AI SUGGESTION -->
+  <div class="card ai">
+    <h3>🤖 AI Fitness Suggestion</h3>
+    <p id="aiMain"></p>
+    <p id="aiTip"></p>
+    <div id="aiVideo"></div>
+  </div>
+
+</main>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

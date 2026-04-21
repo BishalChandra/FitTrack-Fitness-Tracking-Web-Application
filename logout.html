@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Logging Out | FitTrack</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/logout.css">
+</head>
+<body>
+
+<div class="logout-card">
+
+  <div class="icon-ring">👋</div>
+
+  <h1>See you soon!</h1>
+  <p class="sub">You've been logged out of <strong>FitTrack</strong>.<br>Keep up the great work! 💪</p>
+
+  <div class="countdown-wrap">
+    <svg class="ring-svg" viewBox="0 0 60 60">
+      <circle class="ring-bg" cx="30" cy="30" r="26"/>
+      <circle class="ring-fill" id="ringFill" cx="30" cy="30" r="26"/>
+    </svg>
+    <span id="countNum" class="count-num">3</span>
+  </div>
+
+  <p class="redirect-note">Redirecting to home in <span id="countText">3</span> seconds…</p>
+
+  <a href="index.html" class="btn-teal">Go Now →</a>
+  <a href="login.html" class="btn-ghost">Login Again</a>
+
+</div>
+
+<script>
+  // Clear session
+  localStorage.removeItem('fittrack_user');
+
+  // Countdown + redirect
+  let secs = 3;
+  const numEl   = document.getElementById('countNum');
+  const textEl  = document.getElementById('countText');
+  const ring    = document.getElementById('ringFill');
+  const circumference = 2 * Math.PI * 26; // ≈163.4
+
+  ring.style.strokeDasharray  = circumference;
+  ring.style.strokeDashoffset = 0;
+
+  const timer = setInterval(() => {
+    secs--;
+    numEl.textContent  = secs;
+    textEl.textContent = secs;
+
+    // shrink ring proportionally
+    const progress = secs / 3;
+    ring.style.strokeDashoffset = circumference * (1 - progress);
+
+    if (secs <= 0) {
+      clearInterval(timer);
+      window.location.href = 'index.html';
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
