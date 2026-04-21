@@ -8,6 +8,13 @@ document.addEventListener("DOMContentLoaded", () => {
   updateProgress();
   generateAI();
 });
+// ── DYNAMIC USERNAME ─────────────────────────
+// Reads the name saved during register/login from localStorage
+// and injects it into the welcome heading.
+const userData = JSON.parse(localStorage.getItem('fittrack_user_data') || '{}');
+const firstName = userData.name ? userData.name.split(' ')[0] : 'There';
+const welcomeEl = document.getElementById('welcomeName');
+if (welcomeEl) welcomeEl.textContent = `Welcome, ${firstName} 👋`;
 
 // ---------------- PROGRESS BAR ----------------
 function updateProgress() {
