@@ -1,0 +1,174 @@
+/* =============================================
+   FitTrack — Login / Register Shared CSS
+   Dark navy bg · charcoal card · teal accent
+   ============================================= */
+
+*, *::before, *::after {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  background: #1e1e2e;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  /* subtle radial glow behind card */
+  background-image: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(0,201,167,0.07) 0%, transparent 70%);
+}
+
+/* ── CARD ────────────────────────────────── */
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  background: #2d2d3f;
+  border: 1px solid #3a3a4e;
+  border-radius: 18px;
+  padding: 40px 36px 36px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+  animation: fadeUp 0.4s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── LOGO ────────────────────────────────── */
+.logo {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+  letter-spacing: -0.3px;
+}
+
+.logo span { color: #00c9a7; }
+
+.tagline {
+  text-align: center;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 32px;
+}
+
+/* ── FORM ────────────────────────────────── */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+  margin-top: 16px;
+  display: block;
+}
+
+label:first-of-type { margin-top: 0; }
+
+input {
+  width: 100%;
+  background: #22223a;
+  border: 1px solid #3a3a50;
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #e8e8f0;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder { color: #555; }
+
+input:focus {
+  border-color: #00c9a7;
+  box-shadow: 0 0 0 3px rgba(0,201,167,0.12);
+}
+
+/* ── BUTTON ──────────────────────────────── */
+.btn-submit {
+  width: 100%;
+  margin-top: 26px;
+  padding: 14px;
+  background: #00c9a7;
+  color: #000;
+  border: none;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+  transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+  box-shadow: 0 4px 20px rgba(0,201,167,0.25);
+}
+
+.btn-submit:hover {
+  background: #00ddb8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 26px rgba(0,201,167,0.35);
+}
+
+.btn-submit:active { transform: translateY(0); }
+
+/* ── DIVIDER ─────────────────────────────── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0 0;
+  color: #444;
+  font-size: 12px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #3a3a4e;
+}
+
+/* ── BOTTOM LINK ─────────────────────────── */
+.register {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 13.5px;
+  color: #777;
+}
+
+.register a {
+  color: #00c9a7;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s;
+}
+
+.register a:hover { color: #00ddb8; }
+
+/* ── ERROR / SUCCESS MSG ─────────────────── */
+.form-msg {
+  font-size: 13px;
+  margin-top: 12px;
+  text-align: center;
+  min-height: 18px;
+}
+
+.form-msg.error   { color: #ff6b6b; }
+.form-msg.success { color: #00c9a7; }
+
+/* ── MOBILE ──────────────────────────────── */
+@media (max-width: 480px) {
+  .login-container { padding: 28px 20px 24px; }
+}
