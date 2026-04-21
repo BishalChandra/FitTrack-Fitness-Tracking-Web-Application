@@ -1,0 +1,156 @@
+/* =============================================
+   FitTrack — Logout Page
+   Dark navy · charcoal card · teal accent
+   ============================================= */
+
+*, *::before, *::after {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  background: #1e1e2e;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-image: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(0,201,167,0.07) 0%, transparent 70%);
+}
+
+/* ── CARD ────────────────────────────────── */
+.logout-card {
+  background: #2d2d3f;
+  border: 1px solid #3a3a4e;
+  border-radius: 20px;
+  padding: 48px 40px 40px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+  animation: fadeUp 0.4s ease both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── ICON RING ───────────────────────────── */
+.icon-ring {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00c9a7, #0099cc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  box-shadow: 0 0 0 6px rgba(0,201,167,0.15);
+  margin-bottom: 6px;
+}
+
+/* ── TEXT ────────────────────────────────── */
+h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.4px;
+}
+
+.sub {
+  font-size: 14px;
+  color: #888;
+  line-height: 1.7;
+}
+
+.sub strong { color: #00c9a7; }
+
+/* ── COUNTDOWN RING ──────────────────────── */
+.countdown-wrap {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  margin: 4px 0 0;
+}
+
+.ring-svg {
+  width: 64px;
+  height: 64px;
+  transform: rotate(-90deg);
+}
+
+.ring-bg {
+  fill: none;
+  stroke: #3a3a4e;
+  stroke-width: 4;
+}
+
+.ring-fill {
+  fill: none;
+  stroke: #00c9a7;
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.9s linear;
+}
+
+.count-num {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 800;
+  color: #00c9a7;
+}
+
+/* ── REDIRECT NOTE ───────────────────────── */
+.redirect-note {
+  font-size: 13px;
+  color: #666;
+}
+
+/* ── BUTTONS ─────────────────────────────── */
+.btn-teal {
+  background: #00c9a7;
+  color: #000;
+  padding: 12px 32px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  width: 100%;
+  display: block;
+  box-shadow: 0 4px 18px rgba(0,201,167,0.25);
+  transition: background 0.18s, transform 0.12s;
+  margin-top: 4px;
+}
+
+.btn-teal:hover { background: #00ddb8; transform: translateY(-1px); }
+
+.btn-ghost {
+  background: transparent;
+  color: #777;
+  padding: 11px 32px;
+  border-radius: 30px;
+  border: 1px solid #3a3a50;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  width: 100%;
+  display: block;
+  transition: border-color 0.18s, color 0.18s;
+}
+
+.btn-ghost:hover { border-color: #00c9a7; color: #00c9a7; }
+
+/* ── MOBILE ──────────────────────────────── */
+@media (max-width: 480px) {
+  .logout-card { padding: 36px 22px 28px; }
+}
