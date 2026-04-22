@@ -4,22 +4,20 @@
 <meta charset="UTF-8">
 <title>Profile | FitTrack</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/profile.css">
 </head>
 <body>
 
 <!-- NAVBAR -->
 <header class="navbar">
-  <div class="logo">🏆 <strong>FitTrack</strong></div>
+  <div class="logo">🏋️ <strong>FitTrack</strong></div>
   <nav class="nav-links">
     <a class="pill" href="dashboard.html">Home</a>
     <a class="pill" href="videos.html">Videos</a>
     <a class="pill" href="gallery.html">Gallery</a>
     <a class="pill" href="support.html">Support</a>
     <a class="pill active" href="profile.html">Profile</a>
-    <a class="pill" href="index.html">Logout</a>
+    <a class="pill" href="logout.html">Logout</a>
   </nav>
 </header>
 
@@ -30,25 +28,31 @@
 
     <!-- PROFILE IDENTITY CARD -->
     <div class="card profile-main">
-      <div class="avatar-wrap">
-        <div class="avatar">👤</div>
+      <!-- Avatar with upload -->
+      <div class="avatar-wrap" onclick="document.getElementById('avatarInput').click()">
+        <img id="avatarImg" src="" alt="Avatar" style="display:none;">
+        <span id="avatarEmoji">👤</span>
+        <div class="avatar-overlay">📷</div>
       </div>
-      <h2 id="dispName">Bishal Chandra</h2>
-      <p class="email" id="dispEmail">bishal@email.com</p>
-      <span class="badge">🏆 Active Member</span>
+      <input type="file" id="avatarInput" accept="image/*" onchange="uploadAvatar(event)" style="display:none;">
+      <p class="avatar-hint">Click to change photo</p>
+
+      <h2 id="dispName">—</h2>
+      <p class="email" id="dispEmail">—</p>
+      <span class="badge" id="memberBadge">🏆 Active Member</span>
 
       <div class="info-row">
         <div class="info-cell">
           <span>Age</span>
-          <strong id="dispAge">21</strong>
+          <strong id="dispAge">—</strong>
         </div>
         <div class="info-cell">
           <span>Weight</span>
-          <strong id="dispWeight">68 <em>kg</em></strong>
+          <strong id="dispWeight">— <em>kg</em></strong>
         </div>
         <div class="info-cell">
           <span>Height</span>
-          <strong id="dispHeight">170 <em>cm</em></strong>
+          <strong id="dispHeight">— <em>cm</em></strong>
         </div>
       </div>
 
@@ -58,7 +62,7 @@
     <!-- GOAL + PROGRESS CARD -->
     <div class="card goal-card">
       <h3>🎯 Current Goal</h3>
-      <div class="goal-display" id="goalDisplay">💪 Build Muscle</div>
+      <div class="goal-display" id="goalDisplay">Not set</div>
       <p class="sub-note">Update your goal in Edit Profile.</p>
 
       <h4 class="sub-head">Weekly Target</h4>
@@ -71,42 +75,59 @@
       <p id="goalProgressText" class="sub-note">0 / 5 workouts completed this week</p>
     </div>
 
-  </div><!-- /col-left -->
+    <!-- BADGES CARD -->
+    <div class="card">
+      <h3>🏅 Achievements</h3>
+      <div id="badgesList" class="badges-grid"></div>
+    </div>
+
+  </div>
 
   <!-- RIGHT COLUMN -->
   <div class="col-right">
 
-    <!-- EDIT FORM CARD (hidden until toggled) -->
+    <!-- EDIT FORM CARD -->
     <div class="card edit-card" id="editCard">
       <h3>✏️ Edit Profile</h3>
 
       <label>Full Name</label>
-      <input id="inName" type="text" placeholder="Your name" value="Bishal Chandra">
+      <input id="inName" type="text" placeholder="Your name">
 
       <label>Email</label>
-      <input id="inEmail" type="email" placeholder="email@example.com" value="bishal@email.com">
+      <input id="inEmail" type="email" placeholder="email@example.com">
 
       <div class="row3">
         <div>
           <label>Age</label>
-          <input id="inAge" type="number" placeholder="21" value="21">
+          <input id="inAge" type="number" placeholder="Age">
         </div>
         <div>
           <label>Weight (kg)</label>
-          <input id="inWeight" type="number" placeholder="68" value="68">
+          <input id="inWeight" type="number" placeholder="kg">
         </div>
         <div>
           <label>Height (cm)</label>
-          <input id="inHeight" type="number" placeholder="170" value="170">
+          <input id="inHeight" type="number" placeholder="cm">
         </div>
       </div>
 
+      <label>Gender</label>
+      <select id="inGender">
+        <option value="">-- Select --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+        <option value="Prefer not to say">Prefer not to say</option>
+      </select>
+
       <label>Fitness Goal</label>
       <select id="inGoal">
-        <option>💪 Build Muscle</option>
-        <option>🔥 Lose Weight</option>
-        <option>🏃 Improve Endurance</option>
-        <option>🧘 Stay Active</option>
+        <option value="">-- Select Goal --</option>
+        <option value="💪 Build Muscle">💪 Build Muscle</option>
+        <option value="🔥 Lose Weight">🔥 Lose Weight</option>
+        <option value="🏃 Improve Endurance">🏃 Improve Endurance</option>
+        <option value="🧘 Stay Active">🧘 Stay Active</option>
+        <option value="🥗 Eat Healthier">🥗 Eat Healthier</option>
       </select>
 
       <button class="teal-btn" onclick="saveProfile()">💾 Save Changes</button>
@@ -126,76 +147,242 @@
         <strong id="totalCalories">0 kcal</strong>
       </div>
       <div class="stat-row">
-        <span>👟 Total Steps</span>
+        <span>⏱️ Total Mins Trained</span>
+        <strong id="totalDuration">0 mins</strong>
+      </div>
+      <div class="stat-row">
+        <span>👟 Today's Steps</span>
         <strong id="totalSteps">0</strong>
       </div>
       <div class="stat-row">
         <span>🌙 Avg Sleep</span>
         <strong id="avgSleep">—</strong>
       </div>
+      <div class="stat-row">
+        <span>⚖️ BMI</span>
+        <strong id="dispBMI">—</strong>
+      </div>
 
       <a href="dashboard.html" class="teal-btn" style="display:block;text-align:center;text-decoration:none;margin-top:18px;">📈 Go to Dashboard</a>
     </div>
 
-  </div><!-- /col-right -->
+  </div>
 
 </main>
 
 <script>
-  function toggleEdit() {
-    const card = document.getElementById('editCard');
-    card.classList.toggle('open');
-    // scroll into view smoothly on mobile
-    if (card.classList.contains('open')) {
-      setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
-    }
+// ── KEY used to store profile ─────────────────────────────────
+const PROFILE_KEY = "fittrackProfile";
+
+// ── LOAD everything on page start ────────────────────────────
+window.addEventListener("DOMContentLoaded", () => {
+  loadProfile();
+  loadStats();
+  loadProgress();
+  loadBadges();
+});
+
+// ── LOAD PROFILE from localStorage ───────────────────────────
+function loadProfile() {
+  // Priority 1: full saved profile (after user edits in Edit Profile)
+  let profile = JSON.parse(localStorage.getItem(PROFILE_KEY) || "null");
+
+  // Priority 2: data saved by register.html / login.html → fittrack_user_data
+  const authUser = JSON.parse(localStorage.getItem("fittrack_user_data") || "null");
+
+  if (!profile) {
+    profile = {
+      name:   (authUser && authUser.name)   || localStorage.getItem("userName")  || "",
+      email:  (authUser && authUser.email)  || localStorage.getItem("userEmail") || "",
+      age:    localStorage.getItem("userAge")    || "",
+      weight: localStorage.getItem("userWeight") || "",
+      height: localStorage.getItem("userHeight") || "",
+      gender: localStorage.getItem("userGender") || "",
+      goal:   localStorage.getItem("userGoal")   || "",
+      avatar: localStorage.getItem("userAvatar") || ""
+    };
+  } else {
+    // If profile exists but name/email were updated by a fresh login, sync them
+    if (authUser && authUser.name  && !profile.name)  profile.name  = authUser.name;
+    if (authUser && authUser.email && !profile.email) profile.email = authUser.email;
   }
 
-  function saveProfile() {
-    const name   = document.getElementById('inName').value;
-    const email  = document.getElementById('inEmail').value;
-    const age    = document.getElementById('inAge').value;
-    const weight = document.getElementById('inWeight').value;
-    const height = document.getElementById('inHeight').value;
-    const goal   = document.getElementById('inGoal').value;
+  // ── Display values ──
+  document.getElementById("dispName").textContent  = profile.name   || "No name set";
+  document.getElementById("dispEmail").textContent = profile.email  || "No email set";
+  document.getElementById("dispAge").textContent   = profile.age    || "—";
+  document.getElementById("dispWeight").innerHTML  = (profile.weight || "—") + " <em>kg</em>";
+  document.getElementById("dispHeight").innerHTML  = (profile.height || "—") + " <em>cm</em>";
+  document.getElementById("goalDisplay").textContent = profile.goal || "Not set";
 
-    document.getElementById('dispName').textContent  = name;
-    document.getElementById('dispEmail').textContent = email;
-    document.getElementById('dispAge').innerHTML     = age;
-    document.getElementById('dispWeight').innerHTML  = weight + ' <em>kg</em>';
-    document.getElementById('dispHeight').innerHTML  = height + ' <em>cm</em>';
-    document.getElementById('goalDisplay').textContent = goal;
-
-    const msg = document.getElementById('saveMsg');
-    msg.textContent = '✅ Profile updated successfully!';
-    setTimeout(() => { msg.textContent = ''; }, 3000);
+  // Avatar
+  if (profile.avatar) {
+    document.getElementById("avatarImg").src = profile.avatar;
+    document.getElementById("avatarImg").style.display = "block";
+    document.getElementById("avatarEmoji").style.display = "none";
   }
 
-  window.addEventListener('DOMContentLoaded', () => {
-    const workouts = JSON.parse(localStorage.getItem('workouts') || '[]');
-    document.getElementById('totalWorkouts').textContent = workouts.length || '0';
-    const cal = workouts.reduce((s, w) => s + (parseInt(w.calories) || 0), 0);
-    document.getElementById('totalCalories').textContent = (cal || 0) + ' kcal';
+  // ── Pre-fill form fields ──
+  document.getElementById("inName").value   = profile.name   || "";
+  document.getElementById("inEmail").value  = profile.email  || "";
+  document.getElementById("inAge").value    = profile.age    || "";
+  document.getElementById("inWeight").value = profile.weight || "";
+  document.getElementById("inHeight").value = profile.height || "";
+  setSelectValue("inGender", profile.gender || "");
+  setSelectValue("inGoal",   profile.goal   || "");
 
-    const steps = localStorage.getItem('steps');
-    document.getElementById('totalSteps').textContent = steps ? parseInt(steps).toLocaleString() : '0';
+  // ── Badge label based on workout count ──
+  const workouts = JSON.parse(localStorage.getItem("workouts") || "[]");
+  const badge = document.getElementById("memberBadge");
+  if (workouts.length >= 20)      badge.textContent = "🥇 Elite Member";
+  else if (workouts.length >= 10) badge.textContent = "🥈 Pro Member";
+  else if (workouts.length >= 3)  badge.textContent = "🥉 Rising Star";
+  else                             badge.textContent = "🏆 Active Member";
+}
 
-    const logs = JSON.parse(localStorage.getItem('sleepLogs') || '[]');
-    if (logs.length) {
-      const avg = (logs.reduce((s, l) => s + parseFloat(l.hours), 0) / logs.length).toFixed(1);
-      document.getElementById('avgSleep').textContent = avg + ' hrs';
-    }
+function setSelectValue(id, val) {
+  const sel = document.getElementById(id);
+  for (let i = 0; i < sel.options.length; i++) {
+    if (sel.options[i].value === val) { sel.selectedIndex = i; return; }
+  }
+}
 
-    const weekly = workouts.filter(w => {
-      const diff = (new Date() - new Date(w.date)) / 86400000;
-      return diff <= 7;
-    }).length;
-    const pct = Math.min(Math.round((weekly / 5) * 100), 100);
-    document.getElementById('goalProgress').style.width = pct + '%';
-    document.getElementById('goalPct').textContent = pct + '%';
-    document.getElementById('goalProgressText').textContent =
-      `${weekly} / 5 workouts completed this week`;
-  });
+// ── SAVE PROFILE ──────────────────────────────────────────────
+function saveProfile() {
+  const profile = {
+    name:   document.getElementById("inName").value.trim(),
+    email:  document.getElementById("inEmail").value.trim(),
+    age:    document.getElementById("inAge").value.trim(),
+    weight: document.getElementById("inWeight").value.trim(),
+    height: document.getElementById("inHeight").value.trim(),
+    gender: document.getElementById("inGender").value,
+    goal:   document.getElementById("inGoal").value,
+    avatar: localStorage.getItem("userAvatar") || ""
+  };
+
+  if (!profile.name) { alert("⚠️ Please enter your name."); return; }
+
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+
+  // Keep fittrack_user_data in sync so dashboard + other pages see the updated name
+  const authUser = JSON.parse(localStorage.getItem("fittrack_user_data") || "{}");
+  authUser.name  = profile.name;
+  authUser.email = profile.email;
+  localStorage.setItem("fittrack_user_data", JSON.stringify(authUser));
+
+  // Also write flat keys so dashboard can pick up name
+  localStorage.setItem("userName", profile.name);
+  localStorage.setItem("userEmail", profile.email);
+
+  loadProfile();
+
+  const msg = document.getElementById("saveMsg");
+  msg.textContent = "✅ Profile saved successfully!";
+  msg.style.color = "#00e6a8";
+  setTimeout(() => msg.textContent = "", 3000);
+}
+
+// ── TOGGLE EDIT FORM ──────────────────────────────────────────
+function toggleEdit() {
+  const card = document.getElementById("editCard");
+  card.classList.toggle("open");
+  if (card.classList.contains("open")) {
+    setTimeout(() => card.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+  }
+}
+
+// ── AVATAR UPLOAD ─────────────────────────────────────────────
+function uploadAvatar(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    localStorage.setItem("userAvatar", e.target.result);
+    document.getElementById("avatarImg").src = e.target.result;
+    document.getElementById("avatarImg").style.display = "block";
+    document.getElementById("avatarEmoji").style.display = "none";
+
+    // Also persist in full profile
+    const profile = JSON.parse(localStorage.getItem(PROFILE_KEY) || "{}");
+    profile.avatar = e.target.result;
+    localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── STATS ─────────────────────────────────────────────────────
+function loadStats() {
+  const workouts = JSON.parse(localStorage.getItem("workouts") || "[]");
+
+  document.getElementById("totalWorkouts").textContent = workouts.length;
+
+  const cal = workouts.reduce((s, w) => s + (Number(w.calories) || 0), 0);
+  document.getElementById("totalCalories").textContent = cal.toLocaleString() + " kcal";
+
+  const dur = workouts.reduce((s, w) => s + (Number(w.duration) || 0), 0);
+  document.getElementById("totalDuration").textContent = dur + " mins";
+
+  const steps = localStorage.getItem("steps");
+  document.getElementById("totalSteps").textContent =
+    steps ? Number(steps).toLocaleString() : "0";
+
+  const sleepData = JSON.parse(localStorage.getItem("sleepData") || "[]");
+  if (sleepData.length) {
+    const avg = (sleepData.reduce((s, d) => s + d.hours, 0) / sleepData.length).toFixed(1);
+    document.getElementById("avgSleep").textContent = avg + " hrs";
+  }
+
+  const bodyStats = JSON.parse(localStorage.getItem("bodyStats") || "{}");
+  document.getElementById("dispBMI").textContent = bodyStats.bmi || "—";
+}
+
+// ── WEEKLY PROGRESS ───────────────────────────────────────────
+function loadProgress() {
+  const workouts = JSON.parse(localStorage.getItem("workouts") || "[]");
+  const weekly = workouts.filter(w => {
+    const diff = (new Date() - new Date(w.date)) / 86400000;
+    return diff <= 7;
+  }).length;
+  const pct = Math.min(Math.round((weekly / 5) * 100), 100);
+  document.getElementById("goalProgress").style.width = pct + "%";
+  document.getElementById("goalPct").textContent = pct + "%";
+  document.getElementById("goalProgressText").textContent =
+    weekly + " / 5 workouts completed this week";
+}
+
+// ── BADGES ────────────────────────────────────────────────────
+function loadBadges() {
+  const workouts  = JSON.parse(localStorage.getItem("workouts")  || "[]");
+  const sleepData = JSON.parse(localStorage.getItem("sleepData") || "[]");
+  const steps     = Number(localStorage.getItem("steps")) || 0;
+
+  const earned = [];
+
+  if (workouts.length >= 1)  earned.push({ icon: "🏋️", label: "First Workout" });
+  if (workouts.length >= 5)  earned.push({ icon: "🔥", label: "5 Workouts" });
+  if (workouts.length >= 10) earned.push({ icon: "💪", label: "10 Workouts" });
+  if (workouts.length >= 20) earned.push({ icon: "🥇", label: "20 Workouts" });
+  if (steps >= 10000)        earned.push({ icon: "👟", label: "10K Steps" });
+  if (steps >= 5000)         earned.push({ icon: "🚶", label: "5K Steps" });
+  if (sleepData.length >= 7) earned.push({ icon: "🌙", label: "7-Night Tracker" });
+
+  const totalCal = workouts.reduce((s, w) => s + (Number(w.calories) || 0), 0);
+  if (totalCal >= 1000) earned.push({ icon: "🔥", label: "1000 Cal Burned" });
+
+  const container = document.getElementById("badgesList");
+  if (earned.length === 0) {
+    container.innerHTML = "<p class='no-badge'>Log workouts to earn badges! 🏅</p>";
+    return;
+  }
+
+  container.innerHTML = earned.map(b => `
+    <div class="badge-item">
+      <div class="badge-icon">${b.icon}</div>
+      <div class="badge-label">${b.label}</div>
+    </div>
+  `).join("");
+}
 </script>
+
 </body>
 </html>
